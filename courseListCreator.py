@@ -1,6 +1,7 @@
 # main.py
 import re
 import os
+import json
 
 COURSE_REGEX = r"[A-Z]{3,5}\s*\d{3}"
 
@@ -46,6 +47,33 @@ def main():
 
     print(f"\nTotal unique courses detected: {len(courses)}")
     print("\nNext step: Match these to your degree requirements!")
+    # 2. Process the list into the desired structure
+    processed_courses = []
+    for course in courses:
+        parts = course.split()
+        if len(parts) >= 2:
+            subject = parts[0]
+            number = parts[1]
+
+            processed_courses.append({
+                "subject": subject,
+                "number": number
+            })
+
+    # 3. Create the final dictionary with the main "courses" key
+    data = {
+        "courses": processed_courses
+    }
+
+    # 4. Write the dictionary to a JSON file
+    file_name = "completed_courses.json"
+    try:
+        with open(file_name, 'w') as f:
+            json.dump(data, f, indent=4)
+        print(f"Successfully created {file_name}")
+
+    except IOError as e:
+        print(f"Error writing file: {e}")
 
 
 if __name__ == "__main__":
