@@ -1,0 +1,18 @@
+{
+  "name": "Program General Requirements",
+  "rules": [
+    {
+      "id": "TOTAL_CREDITS",
+      "description": "120 (credits) to graduate",
+      "type": "TOTAL_CREDITS",
+      "required": 120
+    },
+    {
+      "id": "JUNIOR_ENGL",
+      "description": "6 in Junior English/WRS",
+      "type": "LIST_CREDITS",
+      "required": 6,
+      "course_list_ids": ["JUNIOR_ENGLISH"]
+    }
+  ]
+}
